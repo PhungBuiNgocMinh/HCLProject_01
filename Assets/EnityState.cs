@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 
-public class EnityState 
+public abstract class EnityState 
 {
     // 1 trạng thái, sử dụng StateMachine để đổi trạng thái mới
+    protected Player player;
     protected StateMachine stateMachine;
     protected string stateName;
-    public EnityState(StateMachine stateMachine, string stateName)
+    public EnityState(Player player ,StateMachine stateMachine, string stateName)
     {
         this.stateMachine = stateMachine;
         this.stateName = stateName;
+        this.player = player;
     }
 
     public virtual void Enter()
