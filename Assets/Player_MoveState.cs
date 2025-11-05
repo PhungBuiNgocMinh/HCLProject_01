@@ -14,6 +14,8 @@ public class Player_MoveState : EnityState
         {
             stateMachine.ChangeState(player.idleState);
         }
+
+        player.SetVelocity(player.moveInput.x * player.moveSpeed, rb.linearVelocity.y);
     }
 
 }

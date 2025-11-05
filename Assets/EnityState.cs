@@ -2,29 +2,35 @@
 
 public abstract class EnityState 
 {
-    // 1 trạng thái, sử dụng StateMachine để đổi trạng thái mới
+    // la 1 trạng thái, sử dụng StateMachine để đổi trạng thái mới
     protected Player player;
     protected StateMachine stateMachine;
-    protected string stateName;
+    protected string animBoolName;
+
+    protected Animator anim;
+    protected Rigidbody2D rb;
+
     public EnityState(Player player ,StateMachine stateMachine, string stateName)
     {
         this.stateMachine = stateMachine;
-        this.stateName = stateName;
+        this.animBoolName = stateName;
         this.player = player;
+        anim = player.anim;
+        rb = player.rb;
     }
-
+    
     public virtual void Enter()
     {
-        Debug.Log("Ender "+ stateName);
+        anim.SetBool(animBoolName, true);
     }
     public virtual void Update()
     {
-        Debug.Log("Update " + stateName);
+        Debug.Log("Update " + animBoolName);
     }
 
     public virtual void Exit()
     {
-        Debug.Log("Exit " + stateName);
+      anim.SetBool(animBoolName, false);
     }
 
 }
