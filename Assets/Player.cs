@@ -7,20 +7,30 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
 
 
-
-
-    private PlayerInputSet input;
+    public PlayerInputSet input { get; private set; }
     public StateMachine stateMachine { get; private set; }
+
+
     public Player_IdleState idleState { get; private set; }
     public Player_MoveState moveState { get; private set; }
-    public Vector2 moveInput {  get; private set; }
+    public Player_JumpState jumpState { get; private set; }
+    public Player_FallState fallState { get; private set; }
+
+
 
     [Header("Movement details")]
-    public float moveSpeed = 5f ;
+    public float moveSpeed = 8f ;
+    public float jumpForce = 5f;
 
-
-
+    public float inAirMoveMultiplier = 0.8f; // should be between 0 and 1
     private bool isFacingRight = true;
+
+
+    [Header("Collision detection")]
+    public Vector2 moveInput {  get; private set; }
+    [SerializeField] private float groundCheckDistance = 1.4f;
+    [SerializeField] private LayerMask whatIsGround;
+    public bool grounDetected { get; private set; }
 
     private void Awake()
     {
@@ -29,11 +39,14 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         stateMachine = new StateMachine();
+        input = new PlayerInputSet();
 
         idleState = new Player_IdleState(this, stateMachine,"idle");
         moveState = new Player_MoveState(this, stateMachine, "move");
+        jumpState = new Player_JumpState(this, stateMachine, "jumpFall");
+        fallState = new Player_FallState(this, stateMachine, "jumpFall");
 
-        input = new PlayerInputSet();
+
     }
     private void OnEnable()
     {
@@ -51,10 +64,13 @@ public class Player : MonoBehaviour
     {
         stateMachine.Initialize(idleState);
     }
+
     private void Update()
     {
+        HandleCollisionDetection();
         stateMachine.UpdateActiveState();
     }
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
@@ -79,5 +95,16 @@ public class Player : MonoBehaviour
         {
             Flip();
         }
+    }
+
+    private void HandleCollisionDetection()
+    {
+        grounDetected = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position,  transform.position + new Vector3(0,-groundCheckDistance));
     }
 }

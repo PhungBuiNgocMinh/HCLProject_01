@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 927989326}
   - component: {fileID: 927989325}
   - component: {fileID: 927989324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.86415094, g: 0.4157707, b: 0.4157707, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -615,7 +615,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee3f033c8b9e58b40a376deab7e39187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 8
+  jumpForce: 12
+  inAirMoveMultiplier: 0.7
+  groundCheckDistance: 1.4
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &2138198361
 Transform:
   m_ObjectHideFlags: 0
@@ -625,7 +631,7 @@ Transform:
   m_GameObject: {fileID: 2138198359}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86, y: 0.45, z: 0}
+  m_LocalPosition: {x: 2.86, y: 0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -666,7 +672,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.037225246, y: -0.27203083}
+  m_Offset: {x: 0, y: -0.27203083}
   m_Size: {x: 0.79207516, y: 2.0365806}
   m_Direction: 0
 --- !u!50 &2138198363
@@ -684,7 +690,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
