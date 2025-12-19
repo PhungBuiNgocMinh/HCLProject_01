@@ -384,8 +384,8 @@ Transform:
   m_GameObject: {fileID: 607486104}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.79, y: -0.3133, z: 0}
-  m_LocalScale: {x: 2.7027037, y: 2.3572266, z: 1}
+  m_LocalPosition: {x: 5.79, y: 0.5464, z: 0}
+  m_LocalScale: {x: 2.7027037, y: 4.0765877, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -885,9 +885,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   jumpForce: 12
+  wallJumpForce: {x: 6, y: 10}
+  wallSlidesMultiplier: 0.7
   inAirMoveMultiplier: 0.7
   groundCheckDistance: 1.4
-  wallCheckDistance: 0.55
+  wallCheckDistance: 0.45
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
