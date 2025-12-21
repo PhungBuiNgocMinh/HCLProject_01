@@ -28,6 +28,10 @@ public abstract class EnityState
     public virtual void Update()
     {
         anim.SetFloat("yVelocity",rb.linearVelocity.y);
+        if(input.Player.Dash.WasPressedThisFrame()) 
+        {
+            stateMachine.ChangeState(player.dashState);
+        }
     }
 
     public virtual void Exit()
